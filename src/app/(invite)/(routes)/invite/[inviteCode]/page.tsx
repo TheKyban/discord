@@ -10,9 +10,9 @@ interface pageProps {
 
 const Page: FC<pageProps> = async ({ params }) => {
     const profile = await currentProfile();
-    
+
     if (!profile) {
-        return redirectToSignIn();
+        return redirectToSignIn({ returnBackUrl: "/" });
     }
 
     if (!params.inviteCode) {

@@ -102,7 +102,7 @@ export const MembersModal = () => {
                     </DialogDescription>
                 </DialogHeader>
                 <ScrollArea className="mt-8 max-h-[420px] pr-6">
-                    {server?.Members.map((member) => (
+                    {server?.Members?.map((member) => (
                         <div
                             key={member.id}
                             className="flex items-center gap-x-2 mb-6"
