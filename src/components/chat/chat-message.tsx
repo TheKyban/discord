@@ -63,7 +63,6 @@ const ChatMessages: FC<chatMessagesProps> = ({
         count: data?.pages?.[0]?.items?.length ?? 0,
         loadMore: fetchNextPage,
     });
-    console.log("From Messages ",data?.pages?.[0]?.items?.length ?? 0)
     if (status === "loading") {
         return (
             <div className="flex flex-col flex-1 justify-center items-center">
