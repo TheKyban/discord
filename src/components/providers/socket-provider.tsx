@@ -7,7 +7,7 @@ import {
     useEffect,
     useState,
 } from "react";
-import { io as ClientIO } from "socket.io-client";
+import { io, Socket } from "socket.io-client";
 
 type SocketContextType = {
     socket: any | null;
@@ -24,28 +24,28 @@ export const useSocket = () => {
 };
 
 export const SocketProvider = ({ children }: { children: ReactNode }) => {
-    const [socket, setSocket] = useState(null);
+    const [socket, setSocket] = useState<Socket | null>(null);
     const [isConnected, setIsConnected] = useState(false);
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
         setMounted(true);
-        const socketInstance = ClientIO(process.env.NEXT_PUBLIC_SITE_URL!, {
+        const socketInstance: Socket = io(process.env.NEXT_PUBLIC_SITE_URL!, {
             path: "/api/socket/io",
             addTrailingSlash: false,
         });
-        // const socketInstance = (ClientIO() as any)(
-        //     process.env.NEXT_PUBLIC_SITE_URL!,
-        //     {
-        //         path: "/api/socket/io",
-        //         addTrailingSlash: false,
-        //     }
-        // );
+
+        setSocket(socketInstance);
+        
         socketInstance.on("connect", () => {
             setIsConnected(true);
         });
         socketInstance.on("disconnect", () => {
             setIsConnected(false);
+        });
+
+        socketInstance.on("mm", (data: any) => {
+            console.log(data);
         });
 
         return () => {

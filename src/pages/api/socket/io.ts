@@ -17,6 +17,12 @@ const ioHandler = (req: NextApiRequest, res: NextApiResponseServerIo) => {
             path: path,
             addTrailingSlash: false,
         });
+
+        io.on("connect", (socket) => {
+            socket.broadcast.emit("mm", socket.id);
+
+            socket.on("disconnect", async () => {});
+        });
         res.socket.server.io = io;
     }
     res.end();

@@ -63,6 +63,7 @@ const ChatMessages: FC<chatMessagesProps> = ({
         count: data?.pages?.[0]?.items?.length ?? 0,
         loadMore: fetchNextPage,
     });
+    console.log("From Messages ",data?.pages?.[0]?.items?.length ?? 0)
     if (status === "loading") {
         return (
             <div className="flex flex-col flex-1 justify-center items-center">
@@ -86,7 +87,7 @@ const ChatMessages: FC<chatMessagesProps> = ({
     return (
         <div
             ref={chatRef}
-            className="flex-1 flex flex-col py-4 overflow-y-auto"
+            className="flex-1 flex flex-col py-4 overflow-y-auto scroll-smooth no-scrollbar"
         >
             {!hasNextPage && <div className="flex-1" />}
             {!hasNextPage && <ChatWelcome type={type} name={name} />}
@@ -107,7 +108,7 @@ const ChatMessages: FC<chatMessagesProps> = ({
             <div className="flex flex-col-reverse mt-auto ">
                 {data?.pages?.map((group, i) => (
                     <Fragment key={i}>
-                        {group.items.map(
+                        {group?.items?.map(
                             (message: MessageWithMemberWithProfiel) => (
                                 <ChatItem
                                     key={message.id}
