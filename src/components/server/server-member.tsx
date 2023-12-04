@@ -20,13 +20,13 @@ const roleIconMap = {
     [MemberRole.ADMIN]: <ShieldAlert className="h-4 w-4 ml-2 text-rose-500" />,
 };
 
-export const ServerMember: FC<serverMemberProps> = ({ member, server }) => {
+export const ServerMember: FC<serverMemberProps> = ({ member }) => {
     const params = useParams();
     const router = useRouter();
     const icon = roleIconMap[member.role];
 
     const onClick = () => {
-        router.push(`/servers/${params.serverId}/conversations/${member.id}`);
+        router.push(`/servers/${params?.serverId}/conversations/${member.id}`);
     };
     return (
         <button
