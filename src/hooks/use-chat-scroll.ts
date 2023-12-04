@@ -22,10 +22,6 @@ export const useChatScroll = ({
         const handleScroll = () => {
             const scrollTop = topDiv?.scrollTop;
 
-            console.log(
-                topDiv?.scrollHeight - topDiv?.scrollTop - topDiv?.clientHeight
-            );
-
             if (scrollTop === 0 && shouldLoadMore) {
                 loadMore();
             }
