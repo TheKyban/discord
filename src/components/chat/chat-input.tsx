@@ -45,7 +45,7 @@ export const ChatInput: FC<chatInputProps> = ({
                 query,
             });
 
-            axios.post(url, values);
+            await axios.post(url, values);
             form.reset();
             router.refresh();
         } catch (error) {
@@ -86,7 +86,6 @@ export const ChatInput: FC<chatInputProps> = ({
                                     />
 
                                     <div className="absolute top-7 right-8">
-                                        {/* <Smile /> */}
                                         <EmojiPicker
                                             onChange={(emoji: string) =>
                                                 field.onChange(

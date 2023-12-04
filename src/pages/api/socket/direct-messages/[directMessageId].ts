@@ -23,9 +23,6 @@ export default async function handler(
         if (!conversationId) {
             return res.status(400).json({ error: "conversationId missing" });
         }
-        // if (!directMessageId) {
-        //     return res.status(400).json({ error: "directMessageId missing" });
-        // }
 
         const conversation = await db.conversation.findFirst({
             where: {
