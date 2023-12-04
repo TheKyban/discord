@@ -45,7 +45,7 @@ export const ChatInput: FC<chatInputProps> = ({
                 query,
             });
 
-            await axios.post(url, values);
+            axios.post(url, values);
             form.reset();
             router.refresh();
         } catch (error) {
