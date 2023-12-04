@@ -23,6 +23,7 @@ export default function RootLayout({
     return (
         <ClerkProvider>
             <html lang="en" suppressHydrationWarning>
+                <link rel="icon" href="/favicon.ico" sizes="any" />
                 <body
                     className={cn(
                         open_sans.className,
